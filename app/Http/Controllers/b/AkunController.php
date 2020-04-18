@@ -4,6 +4,7 @@ namespace App\Http\Controllers\b;
 
 use App\Http\Controllers\b\BackendController;
 use App\Http\Requests\AkunRequest;
+use Illuminate\Support\Facades\Session;
 use App\Models\Akun;
 use Illuminate\Http\Request;
 
@@ -26,5 +27,11 @@ class AkunController extends BackendController
     {
         $data = $request->all();
         Akun::create($data);
+        Session::flash('flash_notification', [
+            'title' => 'Perhatian!',
+            'level' => 'success',
+            'message' => 'Akun Sukses dibuat'
+        ]);
+        return redirect()->route('akun.create');
     }
 }

@@ -3,9 +3,9 @@
 $.toast({
     heading: "{!! session()->get('flash_notification.title') !!}",
     text: "{!! session()->get('flash_notification.message') !!}",
-    showHideTransition: 'slide', //plain, fade, slide
+    showHideTransition: 'fade', //plain, fade, slide
     icon: "{{ session()->get('flash_notification.level') }}",
-    position: 'bottom-right',
+    position: 'top-right',
     allowToastClose: false,
     textAlign: 'center',
     stack: false,
