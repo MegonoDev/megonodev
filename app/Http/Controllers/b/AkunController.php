@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\b;
 
 use App\Http\Controllers\b\BackendController;
+use App\Http\Requests\AkunRequest;
 use App\Models\Akun;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,7 @@ class AkunController extends BackendController
         return view('akun.create', compact('bcrum'));
     }
 
-    public function store(Request $request)
+    public function store(AkunRequest $request)
     {
         $data = $request->all();
         Akun::create($data);

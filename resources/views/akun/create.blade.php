@@ -15,22 +15,23 @@ Tambah Transaksi
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="nama_akun">Nama Akun</label>
-                                    <input name="nama_akun" class="form-control" id="nama_akun" type="text" placeholder="Nama akun">
-                                </div>
+                            <div class="form-group col-sm-12">
+                                <label for="nama_akun">Nama Akun</label>
+                                <input name="nama_akun" class="form-control {{ $errors->has('nama_akun') ? 'is-invalid' : '' }}" id="nama_akun" type="text" placeholder="Nama akun">
+                                {!! $errors->first('nama_akun', '<div class="invalid-feedback">:message</div>') !!}
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="form-group col-sm-4">
                                 <label for="type_akun">Tipe Akun</label>
-                                <select name="type_akun" class="form-control" id="type_akun">
+                                <select name="type_akun" class="form-control {{ $errors->has('type_akun') ? 'is-invalid' : '' }}" id="type_akun">
+                                    <option value="">-- Pilih Tipe Akun --</option>
                                     <option value="pengeluaran">Pengeluaran</option>
                                     <option value="pendapatan">Pendapatan</option>
                                     <option value="harta">Harta</option>
                                 </select>
+                                {!! $errors->first('type_akun', '<div class="invalid-feedback">:message</div>') !!}
                             </div>
                         </div>
 
@@ -47,6 +48,7 @@ Tambah Transaksi
                                         <label class="custom-control-label" for="alur_akun_kredit">Kredit</label>
                                     </div>
                                 </div>
+                                {!! $errors->first('alur_akun', '<div class="invalid-feedback">:message</div>') !!}
                             </div>
                         </div>
 
