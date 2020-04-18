@@ -18,7 +18,7 @@ Tambah Transaksi
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="nama_akun">Nama Akun</label>
-                                    <input class="form-control" id="nama_akun" type="text" placeholder="Nama akun">
+                                    <input name="nama_akun" class="form-control" id="nama_akun" type="text" placeholder="Nama akun">
                                 </div>
                             </div>
                         </div>
@@ -26,7 +26,7 @@ Tambah Transaksi
                         <div class="row">
                             <div class="form-group col-sm-4">
                                 <label for="type_akun">Tipe Akun</label>
-                                <select class="form-control" id="type_akun">
+                                <select name="type_akun" class="form-control" id="type_akun">
                                     <option value="pengeluaran">Pengeluaran</option>
                                     <option value="pendapatan">Pendapatan</option>
                                     <option value="harta">Harta</option>
