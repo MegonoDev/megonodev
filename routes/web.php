@@ -43,4 +43,5 @@ Route::group(['namespace' => 'Auth'], function () {
 
 Route::group(['namespace' => 'b', 'prefix' => 'admin'], function () {
     Route::get('home', 'HomeController@index')->name('home');
+    Route::resource('akun', 'AkunController');
 });
