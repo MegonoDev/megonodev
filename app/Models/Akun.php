@@ -19,4 +19,5 @@ class Akun extends Model
         }
         return '<span class="badge ' . $class . '">' . $value . '</span>';
     }
+    
 }

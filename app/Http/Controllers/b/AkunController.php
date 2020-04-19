@@ -6,6 +6,7 @@ use App\Http\Controllers\b\BackendController;
 use App\Http\Requests\AkunRequest;
 use Illuminate\Support\Facades\Session;
 use App\Models\Akun;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class AkunController extends BackendController
@@ -38,7 +39,7 @@ class AkunController extends BackendController
 
     public function edit($id)
     {
-        $akun = Akun::findOrFail($id);
+        $akun = DB::table('akuns')->where('id_akun',$id)->first();
         $bcrum = $this->bcrum('Edit', route('akun.index'), 'Akun');
 
         return view('akun.edit', compact('akun', 'bcrum'));

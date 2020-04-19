@@ -26,7 +26,7 @@ Edit Akun
                         <div class="row">
                             <div class="form-group col-sm-4">
                                 <label for="type_akun">Tipe</label>
-                                <?php
+                                {{
                                     Form::select('type_akun', 
                                     [   ''             => '-- Pilih Tipe Akun --',
                                         'pengeluaran'  => 'Pengeluaran',
@@ -35,10 +35,11 @@ Edit Akun
                                      ],
                                      $akun->type_akun,
                                      [
-                                        'class' => 'form-control '.($errors->has('type_akun') ? 'is-invalid' : ''),
+                                        'class' => "form-control $errors->has('type_akun') ? 'is-invalid' : '')",
                                         'id'    => 'type_akun'
-                                        ]);
-                                     ?>
+                                        ]
+                                        )
+                                }}
                                 {!! $errors->first('type_akun', '<div class="invalid-feedback">:message</div>') !!}
                             </div>
                         </div>
@@ -47,20 +48,30 @@ Edit Akun
                             <div class="form-group col-sm-12">
                                 <label for="alur_akun">Alur</label>
                                 <div class="form-inline">
+
                                     <div class="custom-control custom-radio mr-3">
-                                        <input type="radio" class="custom-control-input" id="alur_akun_debet" name="alur_akun" value="debet">
+                                        <input type="radio" class="custom-control-input" id="alur_akun_debet" name="alur_akun" value="debet" {{ ($akun->alur_akun == 'debet') ? 'checked' : '' }}>
                                         <label class="custom-control-label" for="alur_akun_debet">Debet</label>
                                     </div>
                                     <div class="custom-control custom-radio mr-3">
-                                        <input type="radio" class="custom-control-input" id="alur_akun_kredit" name="alur_akun" value="kredit">
+                                        <input type="radio" class="custom-control-input" id="alur_akun_kredit" name="alur_akun" value="kredit" {{ ($akun->alur_akun == 'kredit') ? 'checked' : '' }}>
                                         <label class="custom-control-label" for="alur_akun_kredit">Kredit</label>
                                     </div>
                                 </div>
                                 {!! $errors->first('alur_akun', '<div class="invalid-feedback">:message</div>') !!}
                             </div>
                         </div>
-
                     </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-12 d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="c-icon cil-check"></i> Simpan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
