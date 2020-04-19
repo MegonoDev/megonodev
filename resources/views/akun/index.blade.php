@@ -9,15 +9,27 @@ Akun
         <div class="col-12 col-sm-12 col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Akun</h4>
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                            <h4> <i class="c-icon cil-window-maximize"></i> Akun</h4>
+                        </li>
+                        <li class="list-inline-item float-right">
+                            <div class="d-none d-md-block">
+                                <a href="{{ route('akun.create') }}" class="btn btn-sm btn-outline-primary mx-3">
+                                    <i class="c-icon cil-plus"></i>
+                                    Tambah akun
+                                </a>
+                            </div>
+                            <div class="d-md-none float-right">
+                                <a href="{{ route('akun.create') }}" class="btn btn-sm btn-outline-primary mb-3">
+                                    <i class="c-icon cil-plus"></i>
+
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
                 <div class="card-body">
-                    <div class="d-flex justify-content-end">
-                        <a href="{{ route('akun.create') }}" class="btn btn-sm btn-outline-primary mb-3">
-                            <i class="c-icon cil-plus"></i>
-                            Tambah akun
-                        </a>
-                    </div>
                     @if(!$akuns->isEmpty())
                     <table class="table table-responsive-sm table-bordered table-hover table-striped table-sm">
                         <thead>
