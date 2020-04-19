@@ -39,13 +39,13 @@ class AkunController extends BackendController
 
     public function edit($id)
     {
-        $akun = DB::table('akuns')->where('id_akun',$id)->first();
+        $akun = DB::table('akuns')->where('id_akun', $id)->first();
         $bcrum = $this->bcrum('Edit', route('akun.index'), 'Akun');
 
         return view('akun.edit', compact('akun', 'bcrum'));
     }
 
-    public function update(AkunRequest $request,$id)
+    public function update(AkunRequest $request, $id)
     {
         $data = $request->all();
         $akun = Akun::findOrFail($id);
@@ -56,6 +56,20 @@ class AkunController extends BackendController
             'level' => 'success',
             'message' => 'Berhasil mengedit'
         ]);
+        return redirect()->route('akun.index');
+    }
+
+    public function destroy($id)
+    {
+        $akun = Akun::findOrFail($id);
+        $akun->delete();
+
+        Session::flash('flash_notification', [
+            'title' => 'Perhatian!',
+            'level' => 'error',
+            'message' => 'Berhasil Menghapus'
+        ]);
+
         return redirect()->route('akun.index');
     }
 }

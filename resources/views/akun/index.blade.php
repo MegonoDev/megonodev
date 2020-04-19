@@ -30,9 +30,15 @@ Akun
                                 <td>{{ $akun->type_akun }}</td>
                                 <td>{!! $akun->alur_akun !!}</td>
                                 <td>
-                                    <a href="{{ route('akun.edit',$akun->id_akun) }}" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit akun {{ $akun->nama_akun }}">
-                                        <i class="c-icon cil-pencil"></i>
-                                    </a>
+                                    <form action="{{ route('akun.destroy',$akun->id_akun) }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <a href="{{ route('akun.edit',$akun->id_akun) }}" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit akun {{ $akun->nama_akun }}">
+                                            <i class="c-icon cil-pencil"></i>
+                                        </a>
+                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus akun {{ $akun->nama_akun }}">
+                                            <i class="c-icon cil-trash"></i>
+                                        </button>
                                 </td>
                             </tr>
                             @endforeach
