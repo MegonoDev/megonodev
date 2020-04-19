@@ -14,7 +14,8 @@ class AkunController extends BackendController
     {
 
         $bcrum = $this->bcrum('Akun');
-        return view('akun.index', compact('bcrum'));
+        $akuns = Akun::paginate(10);
+        return view('akun.index', compact('bcrum', 'akuns'));
     }
 
     public function create()
@@ -33,5 +34,27 @@ class AkunController extends BackendController
             'message' => 'Akun Sukses dibuat'
         ]);
         return redirect()->route('akun.create');
+    }
+
+    public function edit($id)
+    {
+        $akun = Akun::findOrFail($id);
+        $bcrum = $this->bcrum('Edit', route('akun.index'), 'Akun');
+
+        return view('akun.edit', compact('akun', 'bcrum'));
+    }
+
+    public function update(AkunRequest $request,$id)
+    {
+        $data = $request->all();
+        $akun = Akun::findOrFail($id);
+        $akun->update($data);
+
+        Session::flash('flash_notification', [
+            'title' => 'Perhatian!',
+            'level' => 'success',
+            'message' => 'Berhasil mengedit'
+        ]);
+        return redirect()->route('akun.index');
     }
 }

@@ -16,7 +16,7 @@
     <meta name="author" content="MegonoDev">
     <link href="{{ asset('img/icon.png') }}" rel="icon">
     <link href="{{ asset('img/icon.png') }}" rel="apple-touch-icon">
-    <title>@yield('title') | EONESIA.ID</title>
+    <title>@yield('title') | MEGONODEV.COM</title>
     <!-- Main styles for this application-->
     <!-- <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"> -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
