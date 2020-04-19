@@ -56,9 +56,14 @@ Tambah Akun
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-md-12 d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="c-icon cil-check"></i> Tambahkan
+                                <button type="submit" class="btn  btn-outline-primary">
+                                    <i class="c-icon cil-check"></i> Simpan
                                 </button>
+
+                                <button type="submit" name="stay" class="btn btn-primary mx-3">
+                                    <i class="c-icon cil-check"></i> Simpan dan sisipkan berikutnya
+                                </button>
+                                
                             </div>
                         </div>
                     </div>

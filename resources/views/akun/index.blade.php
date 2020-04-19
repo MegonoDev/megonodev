@@ -17,7 +17,8 @@ Akun
                             <i class="c-icon cil-plus"></i>
                             Tambah akun
                         </a>
-                        </div>
+                    </div>
+                    @if(!$akuns->isEmpty())
                     <table class="table table-responsive-sm table-bordered table-hover table-striped table-sm">
                         <thead>
                             <tr>
@@ -50,6 +51,13 @@ Akun
                             @endforeach
                         </tbody>
                     </table>
+                    @else
+                    <div class="text-center text-muted">
+                        <img src="{{ asset('img/no-data.png') }}" width="200" height="200" alt="data not found">
+                        <br>
+                        Belum ada akun. klik tambah akun untuk membuat akun baru.
+                    </div>
+                    @endif
                 </div>
                 <div class="card-footer">
 

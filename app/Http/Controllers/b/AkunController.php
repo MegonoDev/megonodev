@@ -34,7 +34,14 @@ class AkunController extends BackendController
             'level' => 'success',
             'message' => 'Akun Sukses dibuat'
         ]);
-        return redirect()->route('akun.create');
+
+        if ($request->has('stay')) {
+            $redirect = 'akun.create';
+        } else {
+            $redirect = 'akun.index';
+        }
+        
+        return redirect()->route($redirect);
     }
 
     public function edit($id)
