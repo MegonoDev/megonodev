@@ -23,12 +23,6 @@
                 <span class="badge badge-info">NEW</span>
             </a>
         </li>
-        <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{ route('akun.create') }}">
-                <i class="c-sidebar-nav-icon c-icon cil-user"></i> Buat Akun
-                <span class="badge badge-info">NEW</span>
-            </a>
-        </li>
         <li class="c-sidebar-nav-divider"></li>
         <li class="c-sidebar-nav-title">Coming soon features</li>
         <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">

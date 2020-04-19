@@ -12,6 +12,12 @@ Akun
                     <h4>Akun</h4>
                 </div>
                 <div class="card-body">
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ route('akun.create') }}" class="btn btn-sm btn-outline-primary mb-3">
+                            <i class="c-icon cil-plus"></i>
+                            Tambah akun
+                        </a>
+                        </div>
                     <table class="table table-responsive-sm table-bordered table-hover table-striped table-sm">
                         <thead>
                             <tr>
