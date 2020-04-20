@@ -16,13 +16,18 @@ class AkunController extends BackendController
 
         $bcrum = $this->bcrum('Akun');
         $akuns = Akun::paginate(10);
-        return view('akun.index', compact('bcrum', 'akuns'));
+        return view('backend.akun.index', compact('bcrum', 'akuns'));
     }
 
     public function create()
     {
+<<<<<<< HEAD
         $bcrum = $this->bcrum('Buat Akun', route('akun.index'), 'Akun');
         return view('akun.create', compact('bcrum'));
+=======
+        $bcrum = $this->bcrum('Buat Transaksi', route('akun.index'), 'Akun');
+        return view('backend.akun.create', compact('bcrum'));
+>>>>>>> feri_frontend
     }
 
     public function store(AkunRequest $request)
@@ -49,7 +54,7 @@ class AkunController extends BackendController
         $akun = DB::table('akuns')->where('id_akun', $id)->first();
         $bcrum = $this->bcrum('Edit', route('akun.index'), 'Akun');
 
-        return view('akun.edit', compact('akun', 'bcrum'));
+        return view('backend.akun.edit', compact('akun', 'bcrum'));
     }
 
     public function update(AkunRequest $request, $id)
@@ -63,7 +68,7 @@ class AkunController extends BackendController
             'level' => 'success',
             'message' => 'Berhasil mengedit'
         ]);
-        return redirect()->route('akun.index');
+        return redirect()->route('backend.akun.index');
     }
 
     public function destroy($id)
