@@ -21,13 +21,8 @@ class AkunController extends BackendController
 
     public function create()
     {
-<<<<<<< HEAD
-        $bcrum = $this->bcrum('Buat Akun', route('akun.index'), 'Akun');
-        return view('akun.create', compact('bcrum'));
-=======
         $bcrum = $this->bcrum('Buat Transaksi', route('akun.index'), 'Akun');
         return view('backend.akun.create', compact('bcrum'));
->>>>>>> feri_frontend
     }
 
     public function store(AkunRequest $request)
