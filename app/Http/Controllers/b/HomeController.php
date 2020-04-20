@@ -23,6 +23,6 @@ class HomeController extends BackendController
     public function index()
     {
         $bcrum = $this->bcrum('Dashboard');
-        return view('home',compact('bcrum'));
+        return view('backend.home',compact('bcrum'));
     }
 }
