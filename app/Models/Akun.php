@@ -10,6 +10,12 @@ class Akun extends Model
     protected $fillable = ['nama_akun', 'type_akun', 'alur_akun'];
     protected $primaryKey = 'id_akun';
 
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaksi::class);
+    }
+
     public function getAlurAkunAttribute($value)
     {
         if ($value == 'debet') {

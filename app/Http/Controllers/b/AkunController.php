@@ -12,9 +12,8 @@ class AkunController extends BackendController
 {
     public function index()
     {
-
         $bcrum = $this->bcrum('Akun');
-        $akuns = Akun::paginate(10);
+        $akuns = Akun::paginate($this->limit);
         return view('akun.index', compact('bcrum', 'akuns'));
     }
 
