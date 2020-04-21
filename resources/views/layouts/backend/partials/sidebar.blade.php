@@ -23,6 +23,20 @@
                 <span class="badge badge-info">NEW</span>
             </a>
         </li>
+        <li class="c-sidebar-nav-title">Transaksi</li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('transaksi.index') }}">
+                <i class="c-sidebar-nav-icon c-icon cil-cart"></i> Transaksi Pengeluaran
+                <span class="badge badge-info">NEW</span>
+            </a>
+        </li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('transaksi.index') }}">
+                <i class="c-sidebar-nav-icon c-icon cil-cash"></i> Transaksi Pemasukan
+                <span class="badge badge-info">NEW</span>
+            </a>
+        </li>
+
         <li class="c-sidebar-nav-divider"></li>
         <li class="c-sidebar-nav-title">Coming soon features</li>
         <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
