@@ -12,8 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+    return view('frontend.index');
+})->name('megonodev');
 
 
 Auth::routes(['register' => false, 'password.request' => false]); //disable karena mau custom login
@@ -44,4 +44,12 @@ Route::group(['namespace' => 'Auth'], function () {
 Route::group(['namespace' => 'b', 'prefix' => 'admin'], function () {
     Route::get('home', 'HomeController@index')->name('home');
     Route::resource('akun', 'AkunController');
+});
+
+
+
+Route::group(['namespace' => 'f',], function () {
+    Route::get('profile', 'FrontendController@profile')->name('frontend.profile');
+    Route::get('team', 'FrontendController@team')->name('frontend.team');
+    Route::get('portfolio', 'FrontendController@portfolio')->name('frontend.portfolio');
 });

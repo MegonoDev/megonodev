@@ -14,14 +14,18 @@ class CreateTableTransaksiHeader extends Migration
     public function up()
     {
         Schema::create('transaksi_headers', function (Blueprint $table) {
-            $table->bigIncrements('no_transaksi');
+            $table->bigIncrements('id');
+            $table->string('invoice');
             $table->string('nama');
             $table->decimal('total_harga');
+            $table->decimal('pajak')->default(10)->comment("Bisa pajak bisa simpanan pokok dalam persen");
             $table->string('keterangan');
+            $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_akun');
             $table->timestamps();
 
             $table->foreign('id_akun')->references('id_akun')->on('akuns')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
