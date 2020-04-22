@@ -50,18 +50,18 @@ Transaksi Pengeluaran
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $transaksi->invoice }}</td>
                                 <td>{{ $transaksi->nama }}</td>
-                                <td>{{ $transaksi->total_harga }}</td>
-                                <td>{{ $transaksi->pajak }}</td>
-                                <td>{{ $transaksi->id_akun }}</td>
+                                <td>{{ rupiah($transaksi->total_harga) }}</td>
+                                <td>{{ persen($transaksi->pajak) }}</td>
+                                <td>{{ $transaksi->akun->nama_akun }}</td>
                                 <td>{{ $transaksi->keterangan }}</td>
                                 <td>
-                                    <form action="{{ route('akun.destroy',$akun->id_akun) }}" method="post">
+                                    <form action="{{ route('transaksi.destroy',$transaksi->id) }}" method="post">
                                         @csrf
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <a href="{{ route('akun.edit',$akun->id_akun) }}" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit akun {{ $akun->nama_akun }}">
+                                        <a href="{{ route('transaksi.edit',$transaksi->id) }}" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit akun {{ $transaksi->nama }}">
                                             <i class="c-icon cil-pencil"></i>
                                         </a>
-                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus akun {{ $akun->nama_akun }}">
+                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus akun {{ $transaksi->nama }}">
                                             <i class="c-icon cil-trash"></i>
                                         </button>
                                 </td>
@@ -78,7 +78,7 @@ Transaksi Pengeluaran
                     @endif
                 </div>
                 <div class="card-footer">
-
+                    {!! $transaksis->links() !!}
                 </div>
             </div>
         </div>
