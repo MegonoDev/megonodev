@@ -15,14 +15,14 @@ class CreateTableTransaksiDetail extends Migration
     {
         Schema::create('transaksi_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('transaksi_id');
+            $table->unsignedBigInteger('id_transaksi');
             $table->string('nama_barang');
             $table->decimal('jumlah');
             $table->decimal('harga');
             $table->decimal('jumlah_harga');
             $table->timestamps();
 
-            $table->foreign('transaksi_id')->references('id')->on('transaksi_headers')->onDelete('cascade');
+            $table->foreign('id_transaksi')->references('id')->on('transaksi_headers')->onDelete('cascade');
         });
     }
 
