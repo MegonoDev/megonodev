@@ -41,6 +41,7 @@ Transaksi Pengeluaran
                                 <th>Pajak / PPN</th>
                                 <th>Akun</th>
                                 <th>Keterangan</th>
+                                <th>Detail</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -54,6 +55,11 @@ Transaksi Pengeluaran
                                 <td>{{ persen($transaksi->pajak) }}</td>
                                 <td>{{ $transaksi->akun->nama_akun }}</td>
                                 <td>{{ $transaksi->keterangan }}</td>
+                                <td>
+                                    <a href="{{ route('transaksi.show',$transaksi->id) }}" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit akun {{ $transaksi->nama }}">
+                                        <i class="c-icon cil-window"></i>
+                                    </a>
+                                </td>
                                 <td>
                                     <form action="{{ route('transaksi.destroy',$transaksi->id) }}" method="post">
                                         @csrf

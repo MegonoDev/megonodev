@@ -48,7 +48,8 @@ class TransaksiController extends BackendController
      */
     public function show($id)
     {
-        //
+        $transaksis = Transaksi::find($id);
+        return view('backend.transaksi.show', compact('transaksis'));
     }
 
     /**
