@@ -48,8 +48,9 @@ class TransaksiController extends BackendController
      */
     public function show($id)
     {
+        $bcrum = $this->bcrum('Transaksi');
         $transaksis = Transaksi::find($id);
-        return view('backend.transaksi.show', compact('transaksis'));
+        return view('backend.transaksi.show', compact('bcrum','transaksis'));
     }
 
     /**
