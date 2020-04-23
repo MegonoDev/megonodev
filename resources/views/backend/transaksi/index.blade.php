@@ -56,7 +56,7 @@ Transaksi Pengeluaran
                                 <td>{{ $transaksi->akun->nama_akun }}</td>
                                 <td>{{ $transaksi->keterangan }}</td>
                                 <td>
-                                    <a href="{{ route('transaksi.show',$transaksi->id) }}" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit akun {{ $transaksi->nama }}">
+                                    <a href="{{ route('transaksi.show',$transaksi->id) }}" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail transaksi">
                                         <i class="c-icon cil-window"></i>
                                     </a>
                                 </td>
@@ -64,10 +64,10 @@ Transaksi Pengeluaran
                                     <form action="{{ route('transaksi.destroy',$transaksi->id) }}" method="post">
                                         @csrf
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <a href="{{ route('transaksi.edit',$transaksi->id) }}" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit akun {{ $transaksi->nama }}">
+                                        <a href="{{ route('transaksi.edit',$transaksi->id) }}" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit transaksi">
                                             <i class="c-icon cil-pencil"></i>
                                         </a>
-                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus akun {{ $transaksi->nama }}">
+                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus transaksi">
                                             <i class="c-icon cil-trash"></i>
                                         </button>
                                 </td>

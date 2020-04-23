@@ -22,7 +22,7 @@ class Transaksi extends Model
 
     public function details()
     {
-        return $this->hasMany(TransaksiDetail::class);
+        return $this->hasMany(TransaksiDetail::class,'id_transaksi');
     }
 
     public function refreshTotalHarga()

@@ -62,7 +62,7 @@ class AkunController extends BackendController
             'level' => 'success',
             'message' => 'Berhasil mengedit'
         ]);
-        return redirect()->route('backend.akun.index');
+        return redirect()->route('akun.index');
     }
 
     public function destroy($id)
