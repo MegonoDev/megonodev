@@ -31,8 +31,8 @@ Transaksi Pengeluaran
                                     <h6 class="mb-3 float-right"><mark>Tanggal: {{ $transaksi->created_at }}</mark></h6>
                                 </div>
 
-                            <div class="table-responsive-sm">
-                                <table class="table table-striped">
+                            <div class="table">
+                                <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th class="center">#</th>
@@ -42,42 +42,25 @@ Transaksi Pengeluaran
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <!-- Sementara pake ini hehe  -->
+                                        @php $total_asli = 0 @endphp
                                         @foreach($transaksi->details as $detail)
                                         <tr>
+                                            @php $total_asli += ($detail->jumlah_harga) @endphp
                                             <td class="center">{{ $loop->iteration }}</td>
                                             <td class="left">{{ $detail->nama_barang }}</td>
                                             <td class="left">{{ $detail->jumlah }}</td>
-                                            <td class="center">{{ $detail->harga }}</td>
+                                            <td class="center">{{ rupiah($detail->harga) }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="3">GRAND TOTAL</th>
+                                            <th colspan="3">{{ rupiah($total_asli) }}</th>
+                                        </tr>
+                                    </tfoot>
                                 </table>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-sm-5">Catatan : -</div>
-                                <div class="col-lg-4 col-sm-5 ml-auto">
-                                    <table class="table table-clear">
-                                        <tbody>
-                                            <tr>
-                                                <!-- <td class="left"><strong>Subtotal</strong></td>
-                                                <td class="right">$8.497,00</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="left"><strong>Discount (20%)</strong></td>
-                                                <td class="right">$1,699,40</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="left"><strong>VAT (10%)</strong></td>
-                                                <td class="right">$679,76</td>
-                                            </tr>
-                                            <tr> -->
-                                                <td class="left"><strong>Total</strong></td>
-                                                <td class="right"><strong>{{ $transaksi->total_harga }}</strong></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                </div>
                             </div>
                         </div>
                     </div>
