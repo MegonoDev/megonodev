@@ -30,7 +30,6 @@ Transaksi Pengeluaran
                                 <div class="col-sm-4 offset-md-4">
                                     <h6 class="mb-3 float-right"><mark>Tanggal: {{ $transaksi->created_at }}</mark></h6>
                                 </div>
-                            </div>
 
                             <div class="table-responsive-sm">
                                 <table class="table table-striped">
