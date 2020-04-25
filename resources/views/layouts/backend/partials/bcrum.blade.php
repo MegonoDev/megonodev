@@ -5,7 +5,7 @@
         @if(isset($bcrum['url-second']))
         <li class="breadcrumb-item"><a href="{{ $bcrum['url-second'] }}">{{ $bcrum['name-second'] }}</a></li>
         @endif
-        <li class="breadcrumb-item">{{ $bcrum['current'] }}</li>
+        <li class="breadcrumb-item active">{{ $bcrum['current'] }}</li>
     </ol>
     <!-- Breadcrumb Menu-->
 </div>
