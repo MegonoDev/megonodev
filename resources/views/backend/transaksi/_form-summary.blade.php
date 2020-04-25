@@ -10,21 +10,34 @@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th class="center">#</th>
+                    <th class="text-center">#</th>
+                    <th class="text-center">Aksi</th>
                     <th>Barang</th>
-                    <th class="center">Jumlah</th>
-                    <th class="right">Harga</th>
-                    <th class="right">Aksi</th>
+                    <th class="text-center">Jumlah</th>
+                    <th class="text-center">Harga</th>
+                    <th class="text-center">Jumlah Harga</th>
                 </tr>
             </thead>
             <tbody id="tbody">
             </tbody>
             <tfoot>
                 <tr>
-                    <th colspan="4">GRAND TOTAL</th>
-                    <th colspan="4">000</th>
+                    <th colspan="5">GRAND TOTAL</th>
+                    <th colspan="5">000</th>
                 </tr>
             </tfoot>
         </table>
+    </div>
+</div>
+
+<div class="card-footer">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="d-flex justify-content-end">
+                <button id="simpan_transaksi" type="button" class="btn btn-primary btn-sm">
+                    Simpan Transaksi
+                </button>
+            </div>
+        </div>
     </div>
 </div>

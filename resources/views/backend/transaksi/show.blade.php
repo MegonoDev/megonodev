@@ -35,10 +35,10 @@ Transaksi Pengeluaran
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th class="center">#</th>
+                                            <th class="text-center">#</th>
                                             <th>Barang</th>
-                                            <th class="center">Jumlah</th>
-                                            <th class="right">Harga</th>
+                                            <th class="text-center">Jumlah</th>
+                                            <th class="text-right">Harga</th>
                                         </tr>
                                     </thead>
                                     <tbody>
