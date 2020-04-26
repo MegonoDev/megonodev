@@ -35,6 +35,7 @@
             <div class="col-sm-12">
                 <div class="d-flex justify-content-end">
                     <button id="simpan_transaksi" type="button" class="btn btn-primary btn-sm">
+                        <i class="c-icon cil-save"></i>
                         Simpan Transaksi
                     </button>
                 </div>

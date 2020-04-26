@@ -47,7 +47,8 @@
         <div class="col-sm-12">
             <div class="d-flex justify-content-end">
                 <button id="tambah_barang" type="button" class="btn btn-primary btn-sm">
-                    Tambah Barang
+                <i class="c-icon cil-plus"></i>    
+                Tambah Barang
                 </button>
             </div>
         </div>

@@ -85,20 +85,20 @@ Tambah Transaksi
 
         function addBarang() {
 
-            var nama_barang = $('#nama_barang').val();
-            var harga = $('#harga').val();
-            var jumlah = $('#jumlah').val();
-            var jumlah_harga = $('#jumlah_harga').val();
+            var nama_barang = $('#nama_barang').val(),
+                harga = $('#harga').val(),
+                jumlah = $('#jumlah').val(),
+                jumlah_harga = $('#jumlah_harga').val();
             if (nama_barang != '' && harga != '' && jumlah != '' && jumlah_harga != '') {
-                var tr_id = parseInt(($('#tbody tr').length != 0) ? $('#tbody tr').length : 0);
-                var trOpen = '<tr id="item_' + (tr_id + 1) + '">';
-                var td1 = '<td class="text-center"> <button data-jumlah_harga="'+jumlah_harga+'" class="btn btn-sm btn-danger" type="button" value="' + (tr_id + 1) + '">hapus</button></td>';
-                var td2 = '<td class="input">' + nama_barang + ' <input type="hidden" name="nama_barang[]" value="' + nama_barang + '"></td>';
-                var td3 = '<td class="input text-center">' + jumlah + '<input type="hidden" name="jumlah[]" value="' + jumlah + '"></td>';
-                var td4 = '<td class="input text-center">' + harga + '<input type="hidden" name="harga[]" value="' + harga + '"></td>';
-                var td5 = '<td class="input text-right">' + jumlah_harga + '<input type="hidden" name="jumlah_harga[]" value="' + jumlah_harga + '"></td>';
-                var trClose = '</tr>';
-                var result_tr = trOpen + td1 + td2 + td3 + td4 + td5 + trClose;
+                var tr_id = parseInt(($('#tbody tr').length != 0) ? $('#tbody tr').length : 0),
+                    trOpen = '<tr id="item_' + (tr_id + 1) + '">',
+                    td1 = '<td class="text-center"> <button data-jumlah_harga="' + jumlah_harga + '" class="btn btn-sm btn-danger" type="button" value="' + (tr_id + 1) + '">hapus</button></td>',
+                    td2 = '<td class="input">' + nama_barang + ' <input type="hidden" name="nama_barang[]" value="' + nama_barang + '"></td>',
+                    td3 = '<td class="input text-center">' + jumlah + '<input type="hidden" name="jumlah[]" value="' + jumlah + '"></td>',
+                    td4 = '<td class="input text-center">' + harga + '<input type="hidden" name="harga[]" value="' + harga + '"></td>',
+                    td5 = '<td class="input text-right">' + jumlah_harga + '<input type="hidden" name="jumlah_harga[]" value="' + jumlah_harga + '"></td>',
+                    trClose = '</tr>',
+                    result_tr = trOpen + td1 + td2 + td3 + td4 + td5 + trClose;
                 $('#tbody').append(result_tr);
             }
         }
