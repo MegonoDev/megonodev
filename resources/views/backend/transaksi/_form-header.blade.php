@@ -2,11 +2,11 @@
     @csrf
     <div class="card-body">
         <div class="row">
-            <div class="form-group col-sm-12">
-                <h6 class="float-right"><mark>Invoice#{{ $invoice }}</mark></h6>
-            </div>
+            <!-- <div class="form-group col-sm-12">
+                <h6 class="float-right"><mark>Invoice# </mark></h6>
+            </div> -->
         </div>
-
+        <!-- <input type="hidden" name="invoice" value=""> -->
         <div class="row">
             <div class="form-group col-sm-12">
                 <label for="nama">Nama Transaksi</label>
