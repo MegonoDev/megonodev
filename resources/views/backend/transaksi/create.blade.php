@@ -36,8 +36,11 @@ Tambah Transaksi
 </div>
 @endsection
 
+@push('css')
+<link rel="stylesheet" href="{{ asset('assets/sweetalert2/dist/sweetalert2.css') }}">
+@endpush
 @push('scripts')
-
+<script src="{{ asset('assets/sweetalert2/dist/sweetalert2.js') }}"></script>
 <script>
     $(document).ready(function() {
 
@@ -84,7 +87,6 @@ Tambah Transaksi
 
 
         function addBarang() {
-
             var nama_barang = $('#nama_barang').val(),
                 harga = $('#harga').val(),
                 jumlah = $('#jumlah').val(),
@@ -124,6 +126,8 @@ Tambah Transaksi
         }
 
         function simpanTransaksi() {
+            //PLEASE WAIT LOADING
+            Swal.showLoading();
             var fd = new FormData();
             var url = "{{ route('transaksi.store') }}",
                 method = 'POST';
@@ -142,15 +146,34 @@ Tambah Transaksi
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    $('.container-fluid').html(response);
+                    if (response.status == 'success') {
+                        Swal.fire({
+                            title: 'Transaksi Berhasil!',
+                            html: 'Anda Akan dialihkan kehalaman utama transaksi',
+                            timer: 2000,
+                            timerProgressBar: true,
+                            onBeforeOpen: () => {
+                                Swal.showLoading()
+                            }
+                        }).then((result) => {
+                            backTo(response.url);
+                        })
+                    } else {
+                        Swal.fire(
+                            'Transaksi Gagal!',
+                            response.message,
+                            'error'
+                        );
+                    }
                 }
 
             });
         }
+
+        function backTo(url) {
+            window.location.href = url;
+        }
     });
 </script>
-
-@endpush
-@push('css')
 
 @endpush

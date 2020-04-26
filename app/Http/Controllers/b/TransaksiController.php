@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\TransaksiDetail;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\Invoice;
+use Illuminate\Support\Facades\Session;
 
 class TransaksiController extends BackendController
 {
@@ -51,11 +52,19 @@ class TransaksiController extends BackendController
         $dataHeader['invoice'] = Invoice::getInvoice($this->kodeTransaksi);
         $transaksi = Transaksi::create($dataHeader);
 
+        if (!$transaksi->id) return response()->json(['status' => 'error', 'message' => 'Transaksi gagal']);
+
         foreach ($request->items as $item) {
             $item['id_transaksi'] = $transaksi->id;
             TransaksiDetail::create($item);
         }
-        return redirect()->route('transaksi.index');
+
+        Session::flash('flash_notification', [
+            'title' => 'Berhasil!',
+            'level' => 'success',
+            'message' => 'Tambah transaksi berhasil.'
+        ]);
+        return response()->json(['url' => route('transaksi.index'), 'status' => 'success', 'message' => 'Tambah transaksi berhasil']);
     }
 
     /**
