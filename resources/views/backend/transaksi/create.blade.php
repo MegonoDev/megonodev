@@ -149,7 +149,8 @@ Tambah Transaksi
                     if (response.status == 'success') {
                         Swal.fire({
                             title: 'Transaksi Berhasil!',
-                            html: 'Anda Akan dialihkan kehalaman utama transaksi',
+                            icon: 'success',
+                            html: 'Anda akan dialihkan kehalaman utama transaksi',
                             timer: 2000,
                             timerProgressBar: true,
                             onBeforeOpen: () => {
