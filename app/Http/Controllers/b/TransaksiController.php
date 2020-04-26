@@ -7,6 +7,7 @@ use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use App\Models\TransaksiDetail;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\Invoice;
 
 class TransaksiController extends BackendController
 {
@@ -15,6 +16,7 @@ class TransaksiController extends BackendController
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $bcrum = $this->bcrum('Transaksi');
@@ -46,16 +48,7 @@ class TransaksiController extends BackendController
 
         $dataHeader = $request->except('items');
         $dataHeader['id_user'] = Auth::user()->id;
-
-
-        $latestInvoice      = Transaksi::latest('created_at')->first();
-        if ($latestInvoice != null) {
-            $explodeInvoice = explode('KL', $latestInvoice->invoice);
-            $invoicePlus    = $explodeInvoice[1] + 1;
-            $dataHeader['invoice'] = 'KL' . $invoicePlus;
-        } else {
-            $dataHeader['invoice'] = 'KL01';
-        }
+        $dataHeader['invoice'] = Invoice::getInvoice($this->kodeTransaksi);
         $transaksi = Transaksi::create($dataHeader);
 
         foreach ($request->items as $item) {
