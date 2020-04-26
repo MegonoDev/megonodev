@@ -79,6 +79,7 @@ Tambah Transaksi
 
         $('#tambah_barang').click(function() {
             addBarang();
+            updateGrandTotal();
         })
 
 
@@ -89,32 +90,64 @@ Tambah Transaksi
             var jumlah = $('#jumlah').val();
             var jumlah_harga = $('#jumlah_harga').val();
             if (nama_barang != '' && harga != '' && jumlah != '' && jumlah_harga != '') {
-                var tr_id = parseInt(($('#tbody tr').length != 0) ? $('#tbody tr:last').attr('id') : 0);
-                var trOpen = '<tr id="' + (tr_id + 1) + '">';
-                var td0 = '<td>' + (tr_id + 1) + '</td>';
-                var td1 = '<td class="text-center"> <button class="btn btn-sm btn-danger" type="button" id="del_' + (tr_id + 1) + '">hapus</button></td>';
-                var td2 = '<td class="input" name="nama_barang[]">' + nama_barang + '</td>';
-                var td3 = '<td class="input" name="jumlah[]" class="text-center">' + jumlah + '</td>';
-                var td4 = '<td class="input" name="harga[]" class="text-center">' + harga + '</td>';
-                var td5 = '<td class="input" name="total_harga[]" class="text-center">' + jumlah_harga + '</td>';
+                var tr_id = parseInt(($('#tbody tr').length != 0) ? $('#tbody tr').length : 0);
+                var trOpen = '<tr id="item_' + (tr_id + 1) + '">';
+                var td1 = '<td class="text-center"> <button data-jumlah_harga="'+jumlah_harga+'" class="btn btn-sm btn-danger" type="button" value="' + (tr_id + 1) + '">hapus</button></td>';
+                var td2 = '<td class="input">' + nama_barang + ' <input type="hidden" name="nama_barang[]" value="' + nama_barang + '"></td>';
+                var td3 = '<td class="input text-center">' + jumlah + '<input type="hidden" name="jumlah[]" value="' + jumlah + '"></td>';
+                var td4 = '<td class="input text-center">' + harga + '<input type="hidden" name="harga[]" value="' + harga + '"></td>';
+                var td5 = '<td class="input text-right">' + jumlah_harga + '<input type="hidden" name="jumlah_harga[]" value="' + jumlah_harga + '"></td>';
                 var trClose = '</tr>';
-                var result_tr = trOpen + td0 + td1 + td2 + td3 + td4 + td5 + trClose;
+                var result_tr = trOpen + td1 + td2 + td3 + td4 + td5 + trClose;
                 $('#tbody').append(result_tr);
             }
         }
         //summary form
+        $('#form-summary').on('click', '.btn-primary', function() {
+            simpanTransaksi();
+        });
+        $('#tbody').on('click', '.btn-danger', function() {
+            var id = parseInt($(this).val());
+            var hargaMin = $(this).data('jumlah_harga');
+            $('#item_' + id).remove();
+            updateGrandTotal();
+        });
 
-        $('#simpan_transaksi').click(function() {
-            var data = $.param($('td .input').map(function() {
-                return {
-                    name: $(this).attr('name'),
-                    value: $(this).text().trim()
-                };
+        function updateGrandTotal() {
+            var tagHarga = $('#sum_total_harga');
+            var total_hargas = 0;
+            var jumlah_hargas = $('#form-summary').find('input[name="jumlah_harga[]"]');
+            $.each(jumlah_hargas, function(i, value) {
+                total_hargas += parseInt($(this).val());
+            });
+            tagHarga.html(total_hargas);
+            $('input[name="total_harga"]').val(total_hargas);
+        }
 
-                alert(data);
-            }));
-            alert(data);
-        })
+        function simpanTransaksi() {
+            var fd = new FormData();
+            var url = "{{ route('transaksi.store') }}",
+                method = 'POST';
+            var formHeader = $('#form-header').serializeArray();
+            $.each(formHeader, function(key, input) {
+                fd.append(input.name, input.value);
+            });
+            var formSummary = $('#form-summary').serializeArray();
+            $.each(formSummary, function(key, input) {
+                fd.append(input.name, input.value);
+            });
+            $.ajax({
+                url: url,
+                method: method,
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    $('.container-fluid').html(response);
+                }
+
+            });
+        }
     });
 </script>
 

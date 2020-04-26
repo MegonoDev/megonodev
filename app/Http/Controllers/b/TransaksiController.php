@@ -41,7 +41,7 @@ class TransaksiController extends BackendController
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
