@@ -90,13 +90,13 @@ Tambah Transaksi
                 jumlah = $('#jumlah').val(),
                 jumlah_harga = $('#jumlah_harga').val();
             if (nama_barang != '' && harga != '' && jumlah != '' && jumlah_harga != '') {
-                var tr_id = parseInt(($('#tbody tr').length != 0) ? $('#tbody tr').length : 0),
-                    trOpen = '<tr id="item_' + (tr_id + 1) + '">',
-                    td1 = '<td class="text-center"> <button data-jumlah_harga="' + jumlah_harga + '" class="btn btn-sm btn-danger" type="button" value="' + (tr_id + 1) + '">hapus</button></td>',
-                    td2 = '<td class="input">' + nama_barang + ' <input type="hidden" name="nama_barang[]" value="' + nama_barang + '"></td>',
-                    td3 = '<td class="input text-center">' + jumlah + '<input type="hidden" name="jumlah[]" value="' + jumlah + '"></td>',
-                    td4 = '<td class="input text-center">' + harga + '<input type="hidden" name="harga[]" value="' + harga + '"></td>',
-                    td5 = '<td class="input text-right">' + jumlah_harga + '<input type="hidden" name="jumlah_harga[]" value="' + jumlah_harga + '"></td>',
+                var tr_id = parseInt(($('#tbody tr').length != 0) ? $('#tbody tr').length : 0) + 1,
+                    trOpen = '<tr id="item_' + tr_id + '">',
+                    td1 = '<td class="text-center"> <button data-jumlah_harga="' + jumlah_harga + '" class="btn btn-sm btn-danger" type="button" value="' + tr_id + '">hapus</button></td>',
+                    td2 = '<td class="input">' + nama_barang + ' <input type="hidden" name="items[' + tr_id + '][nama_barang]" value="' + nama_barang + '"></td>',
+                    td3 = '<td class="input text-center">' + jumlah + '<input type="hidden" name="items[' + tr_id + '][jumlah]" value="' + jumlah + '"></td>',
+                    td4 = '<td class="input text-center">' + harga + '<input type="hidden" name="items[' + tr_id + '][harga]" value="' + harga + '"></td>',
+                    td5 = '<td class="input text-right">' + jumlah_harga + '<input class="input_total_harga" type="hidden" name="items[' + tr_id + '][jumlah_harga]" value="' + jumlah_harga + '"></td>',
                     trClose = '</tr>',
                     result_tr = trOpen + td1 + td2 + td3 + td4 + td5 + trClose;
                 $('#tbody').append(result_tr);
@@ -108,7 +108,6 @@ Tambah Transaksi
         });
         $('#tbody').on('click', '.btn-danger', function() {
             var id = parseInt($(this).val());
-            var hargaMin = $(this).data('jumlah_harga');
             $('#item_' + id).remove();
             updateGrandTotal();
         });
@@ -116,7 +115,7 @@ Tambah Transaksi
         function updateGrandTotal() {
             var tagHarga = $('#sum_total_harga');
             var total_hargas = 0;
-            var jumlah_hargas = $('#form-summary').find('input[name="jumlah_harga[]"]');
+            var jumlah_hargas = $('#form-summary').find('.input_total_harga');
             $.each(jumlah_hargas, function(i, value) {
                 total_hargas += parseInt($(this).val());
             });
