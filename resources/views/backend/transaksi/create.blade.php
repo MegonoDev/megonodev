@@ -191,6 +191,10 @@ Tambah Transaksi
         }
 
         function hapusInvalid() {
+            var y = $('.is-invalid').length;
+            for (var i = 0; i < y; i++) {
+                $('.is-invalid').removeClass('is-invalid');
+            }
             var x = $('.invalid-feedback').length;
             for (var i = 0; i < x; i++) {
                 $('.invalid-feedback').remove();
