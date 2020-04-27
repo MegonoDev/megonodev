@@ -3,7 +3,7 @@
         <div class="form-group col-sm-12">
             <label for="nama_barang">Nama Barang</label>
             <input type="text" name="nama_barang" id="nama_barang" class="form-control {{ $errors->has('nama_barang') ? 'is-invalid' : '' }}">
-            <div class="invalid-feedback"></div>
+            
         </div>
     </div>
 
@@ -48,7 +48,7 @@
             <div class="d-flex justify-content-end">
                 <button id="tambah_barang" type="button" class="btn btn-primary btn-sm">
                 <i class="c-icon cil-plus"></i>    
-                Tambah Barang
+                Tambah Item
                 </button>
             </div>
         </div>
