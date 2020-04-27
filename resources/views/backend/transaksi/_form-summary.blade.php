@@ -23,7 +23,7 @@
                 <tfoot>
                     <tr>
                         <th colspan="4">GRAND TOTAL</th>
-                        <th colspan="4" class="text-right"> <input type="hidden" name="total_harga" value=""> <span id="sum_total_harga">0</span></th>
+                        <th colspan="4" class="text-right"> <input type="hidden" name="total_harga" value="0"> <span id="sum_total_harga">0</span></th>
                     </tr>
                 </tfoot>
             </table>

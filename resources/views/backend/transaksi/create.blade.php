@@ -126,6 +126,8 @@ Tambah Transaksi
         }
 
         function simpanTransaksi() {
+            //HAPUS INVALID DULU
+            hapusInvalid();
             //PLEASE WAIT LOADING
             Swal.showLoading();
             var fd = new FormData();
@@ -146,7 +148,6 @@ Tambah Transaksi
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    $('.c-app').html(response);
                     if (response.status == 'success') {
                         Swal.fire({
                             title: 'Transaksi Berhasil!',
@@ -167,9 +168,33 @@ Tambah Transaksi
                             'error'
                         );
                     }
-                }
+                },
+                error: function(xhr) {
+                    var errors = xhr.responseJSON,
+                        count = Object.keys(errors.errors).length;
 
+                    Swal.fire({
+                        title: "Perhatian!",
+                        text: count + " data masih salah!",
+                        icon: "warning",
+                        button: "OK!",
+                        closeOnClickOutside: false
+                    });
+                    $.each(errors.errors, function(i, error) {
+                        var el = $(document).find('[id="' + i + '"]');
+                        var teks = '<div class="invalid-feedback">' + error[0] + '</div>';
+                        el.after(teks);
+                        $(el).addClass('is-invalid');
+                    })
+                }
             });
+        }
+
+        function hapusInvalid() {
+            var x = $('.invalid-feedback').length;
+            for (var i = 0; i < x; i++) {
+                $('.invalid-feedback').remove();
+            }
         }
 
         function backTo(url) {

@@ -47,14 +47,13 @@ class TransaksiController extends BackendController
      */
     public function store(TransaksiRequest $request)
     {
-        dd($request->all());
+        if ($request->item == null) return response()->json(['status' => 'error', 'message' => 'Item masih kosong']);
         $dataHeader = $request->except('items');
         $dataHeader['id_user'] = Auth::user()->id;
         $dataHeader['invoice'] = Invoice::getInvoice($this->kodeTransaksi);
         $transaksi = Transaksi::create($dataHeader);
 
-        if (!$transaksi->id) return response()->json(['status' => 'error', 'message' => 'Transaksi gagal']);
-
+        if (!$transaksi->id)        return response()->json(['status' => 'error', 'message' => 'Transaksi gagal tersimpan']);
         foreach ($request->items as $item) {
             $item['id_transaksi'] = $transaksi->id;
             TransaksiDetail::create($item);

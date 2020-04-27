@@ -3,7 +3,7 @@
         <div class="form-group col-sm-12">
             <label for="nama_barang">Nama Barang</label>
             <input type="text" name="nama_barang" id="nama_barang" class="form-control {{ $errors->has('nama_barang') ? 'is-invalid' : '' }}">
-            {!! $errors->first('nama_barang', '<div class="invalid-feedback">:message</div>') !!}
+            <div class="invalid-feedback"></div>
         </div>
     </div>
 
