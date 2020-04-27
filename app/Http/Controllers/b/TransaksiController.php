@@ -7,8 +7,6 @@ use App\Models\Akun;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use App\Models\TransaksiDetail;
-use Illuminate\Support\Facades\Auth;
-use App\Repositories\Invoice;
 use Illuminate\Support\Facades\Session;
 
 class TransaksiController extends BackendController
@@ -50,7 +48,6 @@ class TransaksiController extends BackendController
         // dd($request->items);
         if ($request->items == null) return response()->json(['status' => 'error', 'message' => 'Item masih kosong']);
         $dataHeader = $request->except('items');
-        $dataHeader['invoice'] = Invoice::getInvoice($this->kodeTransaksi);
         $transaksi = $request->user()->transaksis()->create($dataHeader);
 
         if (!$transaksi->id)        return response()->json(['status' => 'error', 'message' => 'Transaksi gagal tersimpan']);

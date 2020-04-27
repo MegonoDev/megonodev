@@ -102,6 +102,14 @@ Tambah Transaksi
                     trClose = '</tr>',
                     result_tr = trOpen + td1 + td2 + td3 + td4 + td5 + trClose;
                 $('#tbody').append(result_tr);
+            } else {
+                Swal.fire({
+                    title: "Perhatian!",
+                    text: "Data barang belum lengkap!",
+                    icon: "warning",
+                    showConfirmButton: "OK!",
+                    allowOutsideClick: false
+                });
             }
         }
         //summary form
@@ -152,8 +160,9 @@ Tambah Transaksi
                         Swal.fire({
                             title: 'Transaksi Berhasil!',
                             icon: 'success',
-                            html: 'Anda akan dialihkan kehalaman utama transaksi',
+                            html: 'Anda akan dialihkan kehalaman utama transaksi.',
                             timer: 2000,
+                            allowOutsideClick: false,
                             timerProgressBar: true,
                             onBeforeOpen: () => {
                                 Swal.showLoading()
@@ -177,8 +186,9 @@ Tambah Transaksi
                         title: "Perhatian!",
                         text: count + " data masih salah!",
                         icon: "warning",
-                        button: "OK!",
-                        closeOnClickOutside: false
+                        showConfirmButton: true,
+                        confirmButtonText: "OK!",
+                        allowOutsideClick: false
                     });
                     $.each(errors.errors, function(i, error) {
                         var el = $(document).find('[id="' + i + '"]');
