@@ -18,7 +18,7 @@
         <div class="row">
             <div class="form-group col-sm-12">
                 <label for="id_akun">Akun</label>
-                {!! Form::select('id_akun',['' => '-- Pilih Akun --']+$akuns->toArray(),null,['id' => 'id_akun','class' => "form-control $errors->has('id_akun') ? 'is-invalid' : '')"]) !!}
+                {!! Form::select('id_akun',['' => '-- Pilih Akun --']+$akuns->toArray(),null,['id' => 'id_akun','class' => "form-control ".($errors->has('id_akun') ? 'is-invalid' : '')]) !!}
                 {!! $errors->first('id_akun', '<div class="invalid-feedback">:message</div>') !!}
             </div>
         </div>

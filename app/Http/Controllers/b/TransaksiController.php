@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\b;
 
+use App\Http\Requests\TransaksiRequest;
 use App\Models\Akun;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
@@ -44,9 +45,9 @@ class TransaksiController extends BackendController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TransaksiRequest $request)
     {
-
+        dd($request->all());
         $dataHeader = $request->except('items');
         $dataHeader['id_user'] = Auth::user()->id;
         $dataHeader['invoice'] = Invoice::getInvoice($this->kodeTransaksi);

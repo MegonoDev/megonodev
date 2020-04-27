@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Akun;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TransaksiRequest extends FormRequest
 {
@@ -24,7 +26,17 @@ class TransaksiRequest extends FormRequest
     public function rules()
     {
         return [
-            //todo bikin validasi buat transaksi, mau play dulu
+            // header
+            'nama'                 => 'required|string|min:3|max:255',
+            'id_akun'              => ['required', Rule::in(Akun::pluck('id_akun'))],
+            'pajak'                => 'required|alpha_num',
+            'keterangan'           => 'required|string|max:255',
+            'total_harga'         => 'required|alpha_num',
+            // detail
+            'items.*.nama_barang'  => 'required|string|max:255',
+            'items.*.harga'        => 'required|alpha_num',
+            'items.*.jumlah'       => 'required|alpha_num',
+            'items.*.jumlah_harga' => 'required|alpha_num',
         ];
     }
 }

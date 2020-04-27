@@ -146,6 +146,7 @@ Tambah Transaksi
                 contentType: false,
                 processData: false,
                 success: function(response) {
+                    $('.c-app').html(response);
                     if (response.status == 'success') {
                         Swal.fire({
                             title: 'Transaksi Berhasil!',
