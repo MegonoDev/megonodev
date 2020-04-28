@@ -45,23 +45,20 @@ class TransaksiController extends BackendController
      */
     public function store(TransaksiRequest $request)
     {
-        // dd($request->items);
         if ($request->items == null) return response()->json(['status' => 'error', 'message' => 'Item masih kosong']);
         $dataHeader = $request->except('items');
-        $transaksi = $request->user()->transaksis()->create($dataHeader);
+        $transaksi  = $request->user()->transaksis()->create($dataHeader);
 
-        if (!$transaksi->id)        return response()->json(['status' => 'error', 'message' => 'Transaksi gagal tersimpan']);
-        $items = [];
-        foreach($request->items as $item) {
-            $items[] = new TransaksiDetail($item);
-        }
+        if (!$transaksi->id) return response()->json(['status' => 'error', 'message' => 'Transaksi gagal tersimpan']);
+        $items      = $this->handleRequestItem($request);
         $transaksi->details()->saveMany($items);
 
         Session::flash('flash_notification', [
-            'title' => 'Berhasil!',
-            'level' => 'success',
+            'title'   => 'Berhasil!',
+            'level'   => 'success',
             'message' => 'Tambah transaksi berhasil.'
         ]);
+
         return response()->json(['url' => route('transaksi.index'), 'status' => 'success', 'message' => 'Tambah transaksi berhasil']);
     }
 
@@ -74,7 +71,7 @@ class TransaksiController extends BackendController
     public function show($id)
     {
         $transaksi = Transaksi::find($id);
-        $bcrum = $this->bcrum('Detail', route('transaksi.index'), 'Transaksi');
+        $bcrum     = $this->bcrum('Detail', route('transaksi.index'), 'Transaksi');
         return view('backend.transaksi.show', compact('transaksi', 'bcrum'));
     }
 
@@ -110,5 +107,14 @@ class TransaksiController extends BackendController
     public function destroy($id)
     {
         //
+    }
+
+    public function handleRequestItem($request)
+    {
+        $items = [];
+        foreach ($request->items as $item) {
+            $items[] = new TransaksiDetail($item);
+        }
+        return $items;
     }
 }
