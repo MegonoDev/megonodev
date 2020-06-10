@@ -36,6 +36,9 @@
         "psr-4": {
             "App\\": "app/"
         },
+	"files": [
+		"app/Helpers/MataUang.php"
+	],
         "classmap": [
             "database/seeds",
             "database/factories"
@@ -44,10 +47,7 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        },
-        "files": [
-            "app/Helpers/MataUang.php"
-        ]
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
