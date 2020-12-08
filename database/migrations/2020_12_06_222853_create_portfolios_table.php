@@ -17,7 +17,7 @@ class CreatePortfoliosTable extends Migration
             $table->bigIncrements('id');
             $table->string('nama');
             $table->string('slug');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
             $table->string('thumbnail');
             $table->timestamps();
         });

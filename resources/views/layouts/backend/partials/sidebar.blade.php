@@ -39,6 +39,12 @@
 
         <li class="c-sidebar-nav-divider"></li>
         <li class="c-sidebar-nav-title">Coming soon features</li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('portfolio.index') }}">
+                <i class="c-sidebar-nav-icon c-icon cil-cash"></i> Portfolio
+                <span class="badge badge-info">NEW</span>
+            </a>
+        </li>
         <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
             <a class="c-sidebar-nav-dropdown-toggle" href="#">
                 <i class="c-sidebar-nav-icon c-icon cil-star"></i> Users
@@ -51,6 +57,7 @@
                 </li>
             </ul>
         </li>
+
     </ul>
     <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
 </div>

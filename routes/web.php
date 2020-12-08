@@ -45,6 +45,7 @@ Route::group(['namespace' => 'b', 'prefix' => 'admin'], function () {
     Route::get('home', 'HomeController@index')->name('home');
     Route::resource('akun', 'AkunController');
     Route::resource('transaksi', 'TransaksiController');
+    Route::resource('portfolio', 'PortfolioController');
 });
 
 
