@@ -37,6 +37,11 @@ Portfolio
                         Belum ada portfolio. klik tambah akun untuk membuat portfolio baru.
                     </div>
                     @endif
+                    <div class="row">
+                        <div class="col-lg-12">
+                            {{$portfolios->appends(Request::except('page'))->links()}}
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer">
                 </div>
@@ -45,3 +50,72 @@ Portfolio
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+
+    $(document).ready(function() {
+
+        $('.hapus').click(function(e) {
+            e.preventDefault();
+            var id = $(this).val();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    del(id);
+                }
+            })
+        })
+
+        function del(id) {
+            var url = $('#delete_' + id).attr('action');
+            var data = $('#delete_' + id).serialize();
+            var method = "POST";
+
+            $.ajax({
+                url: url,
+                method: method,
+                data: data,
+                success: function(response) {
+                    if (response.code == "200") {
+                        Swal.fire(
+                            'Success!',
+                            'Background deleted',
+                            'success'
+                        )
+                        backTo(response.url);
+                    } else {
+                        Swal.fire(
+                            'Error!',
+                            'Can\'t delete background',
+                            'warning'
+                        )
+                    }
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Warning!",
+                        text: xhr.errors,
+                        icon: "warning",
+                        button: "OK!",
+                        closeOnClickOutside: false
+                    });
+                }
+            })
+        }
+
+        function backTo(url) {
+            window.location.href = url;
+        }
+
+    });
+</script>
+@endpush
+

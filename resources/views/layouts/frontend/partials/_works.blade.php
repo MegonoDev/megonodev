@@ -1,16 +1,18 @@
 
           <div class="row">
-            <div class="card  mt-md-3 mx-auto mt-2 pb5" style="width: 23rem;" data-toggle="modal"
-              data-target="#modal-perizinan">
+            @foreach ($portfolios as $portfolio)
+            <div class="card mt-md-3 mx-auto mt-2 pb5" style="width: 23rem;" data-toggle="modal"
+              data-target="#{{$portfolio->nama}}">
               <div class="card-body card-body-0">
-                <img class="card-img-top" src="{{ asset('assets/img/perizinan-pages.png') }}" alt="Web App" />
+                <img class="card-img-top" src="{{ asset('img/thumbnail/'.$portfolio->thumbnail) }}" alt="Web App" />
                 <div class="text-dark text-center mt-2 pb5">
-                  <b>App Perizinan</b> <br />
-                  <span>(Web App)</span>
+                  <b>{{$portfolio->nama}}</b> <br />
+                  <span>({{$portfolio->keterangan}})</span>
                 </div>
               </div>
             </div>
-            <div class="card  mt-md-3 mx-auto mt-2 pb5" style="width: 23rem;" data-toggle="modal"
+            @endforeach
+            {{-- <div class="card  mt-md-3 mx-auto mt-2 pb5" style="width: 23rem;" data-toggle="modal"
               data-target="#modal-viewer">
               <div class="card-body card-body-0">
                 <img class="card-img-top" src="{{ asset('assets/img/viewer-dashboard.png') }}" alt="Viewer claim elektronik" />
@@ -59,5 +61,5 @@
                   <span>(Web Admin)</span>
                 </div>
               </div>
-            </div>
+            </div> --}}
           </div>

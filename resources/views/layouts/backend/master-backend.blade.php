@@ -28,8 +28,9 @@
     <link rel="stylesheet" href="https://coreui.io/demo/3.0-beta.0/vendors/@coreui/icons/css/free.min.css">
     <link rel="stylesheet" href="https://coreui.io/demo/3.0-beta.0/vendors/@coreui/icons/css/brand.min.css">
     <link rel="stylesheet" href="{{ asset('coreui/datepicker/css/bootstrap-datetimepicker.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}" />
     @stack('css')
- 
+
 </head>
 
 <body class="c-app">
@@ -44,8 +45,9 @@
         </div>
     </div>
     <!-- CoreUI and necessary plugins-->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    
+    <script src="{{ asset('assets/jquery-3.4.1.min.js') }}"></script>
+
+
     <script type="text/javascript" src="{{ asset('coreui/moment/min/moment.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('coreui/datepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
 
@@ -54,6 +56,7 @@
     <script src="{{ asset('coreui/node_modules/utilsjs/coreui-utils.js') }}"></script>
     <script src="{{ asset('toast/jquery.toast.js') }}"></script>
     <script src="{{ asset('coreui/js/tooltips.js') }}"></script>
+    <script src="{{ asset('js/sweetalert2.min.js')}}"></script>
     @stack('scripts')
     @include('layouts.backend.partials._flash')
 </body>

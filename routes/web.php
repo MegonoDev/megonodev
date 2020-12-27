@@ -53,5 +53,5 @@ Route::group(['namespace' => 'b', 'prefix' => 'admin'], function () {
 Route::group(['namespace' => 'f',], function () {
     Route::get('profile', 'FrontendController@profile')->name('frontend.profile');
     Route::get('team', 'FrontendController@team')->name('frontend.team');
-    Route::get('portfolio', 'FrontendController@portfolio')->name('frontend.portfolio');
+    Route::get('portfolio', 'PortfolioController@index')->name('frontend.portfolio');
 });

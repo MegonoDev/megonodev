@@ -12,6 +12,7 @@ use File;
 
 class PortfolioController extends BackendController
 {
+    protected $response;
     public function index(Request $request)
     {
         $bcrum = $this->bcrum('Portfolio');
@@ -36,53 +37,64 @@ class PortfolioController extends BackendController
         $data = $this->handleRequest($request);
         $create = Portfolio::create($data);
         if ($create) {
-
-            // $this->notification('success', 'Successful!', 'Portfolio berhasil ditambah');
-
-            // $redirect = ($request->has('stay')) ? 'frame.create' : 'frame.index';
-
+            $this->notification('success', 'Successful!', 'Portfolio berhasil ditambah');
             return redirect()->route('portfolio.index');
         }
     }
 
     public function show($id)
     {
-        //
+        $bcrum = $this->bcrum('Detail Portfolio', route('portfolio.index'), 'Portfolio');
+        $portfolio = Portfolio::find($id);
+        return view('backend.portfolio.show', compact('portfolio', 'bcrum'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $bcrum = $this->bcrum('Edit Portfolio', route('portfolio.index'), 'Portfolio');
+        $portfolio = Portfolio::find($id);
+        return view('backend.portfolio.edit', compact('portfolio', 'bcrum'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $data = $this->handleRequest($request);
+        $portfolio = Portfolio::findOrFail($id);
+        $update = $portfolio->update($data);
+        if ($update) {
+            $this->notification('success', 'Successful!', 'Portfolio berhasil diubah');
+            return redirect()->route('portfolio.index');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        // try {
+        //     $portfolio = Portfolio::find($id);
+        //     $this->deleteImage($portfolio->thumbnail);
+        //     $deletePortfolio = $portfolio->delete();
+
+        //     if ($deletePortfolio) {
+        //         return response()->jsonSuccess(true, 'Berhasil Menghapus', []);
+        //     }
+        // } catch (\Exception $e) {
+        //     return response()->jsonError(false, 'Gagal Menghapus ', $e->getMessage());
+        // }
+
+        $portfolio = Portfolio::where('id', $id)->first();
+        $this->deleteImage($portfolio->thumbnail);
+        dd($portfolio);
+        $portfolio->delete();
+        $this->notification('error', 'Successful!', 'Portfolio berhasil dihapus.');
+        $result = [
+            'result' => 'ok',
+            'code'   => '200',
+            'url'    => route('portfolio.index')
+        ];
+
+        return redirect()->json($result);
     }
+
 
     public function handleRequest($request)
     {
@@ -97,8 +109,16 @@ class PortfolioController extends BackendController
             Image::make($thumbnail->getRealPath())
                 ->save($destination . "/" . $fileName);
             $data['slug'] = $slug;
-            $data['thumbnail']       = $fileName;
+            $data['thumbnail'] = $fileName;
         }
         return $data;
+    }
+
+    public function deleteImage($filename)
+    {
+        $path = public_path() . DIRECTORY_SEPARATOR . 'img/thumbnail'
+            . DIRECTORY_SEPARATOR . $filename;
+
+        return File::delete($path);
     }
 }
