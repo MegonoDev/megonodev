@@ -12,7 +12,6 @@ use File;
 
 class PortfolioController extends BackendController
 {
-    protected $response;
     public function index(Request $request)
     {
         $bcrum = $this->bcrum('Portfolio');
@@ -60,8 +59,10 @@ class PortfolioController extends BackendController
     {
         $data = $this->handleRequest($request);
         $portfolio = Portfolio::findOrFail($id);
+        $path_thumbnail = $portfolio->thumbnail;
         $update = $portfolio->update($data);
         if ($update) {
+            if ($path_thumbnail !== $portfolio->thumbnail) $this->deleteImage($path_thumbnail);
             $this->notification('success', 'Successful!', 'Portfolio berhasil diubah');
             return redirect()->route('portfolio.index');
         }
