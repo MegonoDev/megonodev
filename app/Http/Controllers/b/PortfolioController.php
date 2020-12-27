@@ -69,30 +69,26 @@ class PortfolioController extends BackendController
 
     public function destroy($id)
     {
-        // try {
-        //     $portfolio = Portfolio::find($id);
-        //     $this->deleteImage($portfolio->thumbnail);
-        //     $deletePortfolio = $portfolio->delete();
-
-        //     if ($deletePortfolio) {
-        //         return response()->jsonSuccess(true, 'Berhasil Menghapus', []);
-        //     }
-        // } catch (\Exception $e) {
-        //     return response()->jsonError(false, 'Gagal Menghapus ', $e->getMessage());
-        // }
-
         $portfolio = Portfolio::where('id', $id)->first();
-        $this->deleteImage($portfolio->thumbnail);
-        dd($portfolio);
-        $portfolio->delete();
-        $this->notification('error', 'Successful!', 'Portfolio berhasil dihapus.');
-        $result = [
-            'result' => 'ok',
-            'code'   => '200',
-            'url'    => route('portfolio.index')
+        $delete=$portfolio->delete();
+        if($delete){
+            $this->deleteImage($portfolio->thumbnail);
+            // dd($portfolio);
+            $this->notification('error', 'Successful!', 'Portfolio berhasil dihapus.');
+            $result = [
+                'result' => 'ok',
+                'code'   => '200',
+                'url'    => route('portfolio.index')
+            ];
+            
+            return response()->json($result);
+        }
+        $result =[
+            'result'    => 'false',
+            'code'      => '500',
+            'url'       => route('portfolio.index')
         ];
-
-        return redirect()->json($result);
+        return response()->json($result);
     }
 
 

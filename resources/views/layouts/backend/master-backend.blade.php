@@ -25,8 +25,9 @@
     <link href="{{ asset('coreui/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('toast/jquery.toast.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-    <link rel="stylesheet" href="https://coreui.io/demo/3.0-beta.0/vendors/@coreui/icons/css/free.min.css">
-    <link rel="stylesheet" href="https://coreui.io/demo/3.0-beta.0/vendors/@coreui/icons/css/brand.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/free.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/brand.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/flag.min.css">
     <link rel="stylesheet" href="{{ asset('coreui/datepicker/css/bootstrap-datetimepicker.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}" />
     @stack('css')
